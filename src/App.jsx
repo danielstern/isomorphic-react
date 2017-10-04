@@ -1,10 +1,10 @@
 import React from 'react';
 
-export default ({balance})=>(
+export default ({items = []})=>(
     <div>
         <h1>React Application</h1>
         <p>
-            Your balance is <code>${balance}!?</code>.
+            <code>{items.length}</code> New Questions!
         </p>
     </div>
 )

@@ -13,7 +13,6 @@ export default {
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js',
-        // publicPath: 'public/'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
