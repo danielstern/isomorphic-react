@@ -3,16 +3,20 @@ import path from 'path';
 
 export default {
     entry: [
-        // 'webpack-hot-middleware/client',
-        path.resolve(__dirname, 'src')
+        /**
+         * This line may only be required when using express,
+         * Or possibly not at all
+         */
+        'webpack-hot-middleware/client',
+        path.resolve(__dirname, 'src/')
     ],
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: 'bundle.js',
-        publicPath: '/'
+        // publicPath: 'public/'
     },
     plugins: [
-        // new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin({
             'process.env': {
@@ -27,7 +31,7 @@ export default {
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.jsx|.js/,
                 use: {
                     loader: 'babel-loader',
                     query: {
