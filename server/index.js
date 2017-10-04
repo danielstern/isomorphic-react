@@ -5,13 +5,13 @@ import yields from 'express-yields';
 import fs from 'fs-extra';
 
 const app = express();
+const port = process.env.PORT || 7777;
 
 if(process.env.NODE_ENV === 'development') {
     const config = require('../webpack.config.babel.dev').default;
     const compiler = webpack(config);
     app.use(require('webpack-dev-middleware')(compiler,{
         noInfo: true,
-        // publicPath: "/public/bundle.js",
         stats: {
             assets: false,
             colors: true,
@@ -28,26 +28,11 @@ if(process.env.NODE_ENV === 'development') {
 
 app.get('*', function *(req,res){
     const file = yield fs.readFile('./public/index.html',"utf-8");
-    console.log("Server is serving...",process.env.NODE_ENV);
     res.send(file);
-    // if(process.env.NODE_ENV === 'development') {
-    //     res.send(`
-		// 	<!doctype html>
-		// 	<html>
-		// 		<head>
-		// 			<title>My Universal App</title>
-		// 		</head>
-		// 		<body>
-		// 			<div id='app'></div>
-		// 			<script src='bundle.js'></script>
-		// 		</body>
-		// 	</html>
-		// `);
-    // }
 });
 
 
-app.listen(3000, '0.0.0.0', (err) => {
+app.listen(port, '0.0.0.0', (err) => {
     if(err) {
         console.error(err);
     } else {

@@ -31,7 +31,7 @@ export default {
     module: {
         loaders: [
             {
-                test: /\.jsx|.js/,
+                test: /\.jsx?/,
                 use: {
                     loader: 'babel-loader',
                     query: {
