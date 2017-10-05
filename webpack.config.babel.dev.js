@@ -3,10 +3,6 @@ import path from 'path';
 
 export default {
     entry: [
-        /**
-         * This line may only be required when using express,
-         * Or possibly not at all
-         */
         'webpack-hot-middleware/client',
         path.resolve(__dirname, 'src/')
     ],
