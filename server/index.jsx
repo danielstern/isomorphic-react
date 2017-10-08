@@ -49,14 +49,26 @@ function * getQuestions (){
 }
 
 function * getQuestion (question_id) {
+    // if (useLiveData) {
+    //     data = yield get(questions,{gzip:true,json:true});
+    // } else {
+    //     data = yield fs.readFile('./data/mock-questions.json',"utf-8");
+    //     data = JSON.parse(data);
+    // }
+    // let question = data.items[0]
+    //
     let data;
     if (useLiveData) {
-        data = yield get(question(question_id),{gzip:true});
+        data = yield get(question(question_id),{gzip:true,json:true});
     } else {
         data = yield fs.readFile('./data/mock-question.json',"utf-8");
+        console.log("Data?",data);
+        data = JSON.parse(data);
+        data.items[0].question_id = question_id;
     }
+    return data;
 
-    return JSON.parse(data);
+    // return data;
 }
 
 app.get('/api/questions',function *(req,res){

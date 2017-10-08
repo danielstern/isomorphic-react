@@ -20,6 +20,7 @@ if (module.hot) {
 }
 
 const render = (_App)=>{
+    console.log("Rendering app...",store.getState());
     ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter  history={history}>
@@ -32,9 +33,24 @@ const render = (_App)=>{
 // render(App);
 let initialRender = false;
 store.subscribe(()=>{
+
     const state = store.getState();
     if (! initialRender && state.questions.length > 0) {
+        console.log("Rendering");
         initialRender = false;
         render(App);
     }
 });
+
+const fetchDataForLocation = location=>{
+    console.log("Location?",location);
+    if (location.pathname === "/"){
+        console.log("dispatching action...");
+        store.dispatch({type:`REQUEST_FETCH_QUESTIONS`})
+    }
+    if (location.pathname.includes(`questions`)) {
+        store.dispatch({type:`REQUEST_FETCH_QUESTION`,question_id:location.pathname.split('/')[2]});
+    }
+};
+fetchDataForLocation(history.location);
+history.listen(fetchDataForLocation);
