@@ -1,6 +1,6 @@
 import React from 'react';
 
-const QuestionListItem = ({tags,answer_count,title,views})=>(
+ const QuestionListItem = ({tags,answer_count,title,views})=>(
     <div>
         <h3>
             {title}!!

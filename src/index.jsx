@@ -17,6 +17,10 @@ const store = getStore(history);
 /**
  * TODO ... is caching as a module variable the best solution
  */
+
+/**
+ * Todo... reconcile server state pre-fetching and live data fetching...
+ */
 let _data;
 
 fetch('/data')

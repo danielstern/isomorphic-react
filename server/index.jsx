@@ -35,7 +35,6 @@ if(process.env.NODE_ENV === 'development') {
         }
     }));
     app.use(require('webpack-hot-middleware')(compiler));
-
 }
 
 function * getData (){
@@ -60,18 +59,20 @@ app.get('/data',function *(req,res){
  * Wildcard route serves main application to any URL,
  * while actual routing is handled by React Router.
  */
-app.get('*', function *(req,res){
 
-    /**
-     * Todo... sort out loose ends
-     */
+app.get(['/','/question/:id'], function *(req,res){
     const index = yield fs.readFile('./public/index.html',"utf-8");
     const data = yield getData();
     let indexRender = index.replace(`<%= data %>`,data);
-    const store = getStore();
+
     const history = createHistory({
         initialEntries: [req.path],
     });
+    const store = getStore(history,{items:data.items});
+
+    /**
+     * Todo... there is quite a bit of repetition between this block and a block in src/index.jsx
+     */
     if (useServerRender) {
         const appRendered = renderToString(
             <Provider store={store}>

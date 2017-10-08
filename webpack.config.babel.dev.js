@@ -8,6 +8,10 @@ export default {
     ],
     output: {
         path: path.resolve(__dirname, 'public'),
+        /**
+         * Public path is necessary for webpack HMR to reload correctly when on a path other than '/'
+         */
+        publicPath: '/',
         filename: 'bundle.js',
     },
     plugins: [
@@ -28,10 +32,7 @@ export default {
             {
                 test: /\.jsx?/,
                 use: {
-                    loader: 'babel-loader',
-                    query: {
-                        presets: ['react-hmre']
-                    }
+                    loader: 'babel-loader'
                 },
                 include: path.resolve(__dirname, 'src'),
             },

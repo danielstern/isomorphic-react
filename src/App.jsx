@@ -26,11 +26,10 @@ export default ({items = []})=>(
         </div>
 
         <p>
-            <code>{items.length}</code> New questions!
+            <code>{items.length}</code> New questions!!!
         </p>
 
         <Route exact path='/' render={()=><QuestionList questions={items}/>}/>
-        <Route exact path='/question/:id' render={({match})=><div>DETAIL!</div>}/>
-        {/*<QuestionList questions={items}/>*/}
+        <Route exact path='/question/:id' render={({match})=><QuestionDetail {...match}/>}/>
     </div>
 )
