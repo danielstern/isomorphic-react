@@ -8,28 +8,37 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux'
 import getStore from './getStore';
 import createHistory from 'history/createBrowserHistory';
+
 const history = createHistory();
-
-if(process.env.NODE_ENV === 'development' && module.hot) {
-    module.hot.accept();
-}
-
-
 const store = getStore(history);
+
+// console.log("Router?",Route);
+
+/**
+ * TODO ... is caching as a module variable the best solution
+ */
+let _data;
 
 fetch('/data')
     .then(data=>data.json())
     .then(data=>{
-        console.info("Rendering application",data);
-        ReactDOM.render(
-            <Provider store={store}>
-                <ConnectedRouter  history={history}>
-                     <App {...data}/>
-                 </ConnectedRouter>
-             </Provider>
-            ,document.getElementById("AppContainer"))
+        _data = data;
+        render(App,_data);
     });
 
-/**
- * How to reload reducers?
- */
+if (module.hot) {
+    module.hot.accept('./App', () => {
+        const NextApp = require('./App').default;
+        render(NextApp, _data);
+    })
+}
+
+const render = (_App,data)=>{
+    ReactDOM.render(
+        <Provider store={store}>
+            <ConnectedRouter  history={history}>
+                 <_App {...data}/>
+             </ConnectedRouter>
+         </Provider>
+        ,document.getElementById("AppContainer"));
+};

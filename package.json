@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "cross-env NODE_ENV=development babel-node server"
+    "start-dev": "cross-env NODE_ENV=development babel-node server --useServerRender=true --useLiveData=true"
   },
   "keywords": [],
   "author": "",
@@ -19,13 +19,18 @@
     "fs-extra": "^4.0.2",
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
+    "optimist": "^0.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.6",
+    "react-router-server": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-saga": "^0.15.6"
+    "redux-saga": "^0.15.6",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

@@ -1,24 +1,36 @@
 import React from 'react';
+import QuestionList from './components/QuestionList'
+import QuestionDetail from './components/QuestionDetail'
 
+import {
+    HashRouter,
+    Switch,
+    Route,
+    Link
+} from 'react-router-dom'
 
-const QuestionListItem = ({tags,answer_count,title,views})=>(
-    <div>
-    <h3>
-        {title}
-    </h3>
-    <code>
-        {tags.join(',')}
-    </code>
-</div>);
-const QuestionList = ({questions})=>{
-    return questions.map(question=><QuestionListItem key={question.question_id} {...question}/>);
-};
 export default ({items = []})=>(
     <div>
         <h1>React Application</h1>
+        <div>
+        <Link to={`/`}>
+            Home
+        </Link>
+        </div>
+        <div>
+
+
+        <Link to={`/question/1234`}>
+            Question
+        </Link>
+        </div>
+
         <p>
             <code>{items.length}</code> New questions!
         </p>
-        <QuestionList questions={items}/>
+
+        <Route exact path='/' render={()=><QuestionList questions={items}/>}/>
+        <Route exact path='/question/:id' render={({match})=><div>DETAIL!</div>}/>
+        {/*<QuestionList questions={items}/>*/}
     </div>
 )

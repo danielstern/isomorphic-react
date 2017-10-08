@@ -7,13 +7,17 @@ import App from '../src/App';
 import { delay } from 'redux-saga';
 import { renderToString } from 'react-dom/server'
 import React from 'react'
-
+import { argv } from 'optimist';
+import { questions } from '../data/api-real-url';
+import { get } from 'request-promise';
+import { ConnectedRouter } from 'react-router-redux';
+import getStore from '../src/getStore'
+import { Provider } from 'react-redux';
 const app = express();
 const port = process.env.PORT || 3000;
-/*
-Todo... pass in with ARGV
- */
-const useServerRender = true;
+const useServerRender = argv.useServerRender === 'true';
+const useLiveData = argv.useLiveData === 'true';
+import createHistory from 'history/createMemoryHistory';
 
 if(process.env.NODE_ENV === 'development') {
     const config = require('../webpack.config.babel.dev').default;
@@ -35,23 +39,47 @@ if(process.env.NODE_ENV === 'development') {
 }
 
 function * getData (){
-    const data = yield fs.readFile('./data/api-mock-response.json',"utf-8");
+    let data;
+    if (useLiveData) {
+        data = yield get(questions,{gzip:true});
+        console.log("data?",data);
+    } else {
+        data = yield fs.readFile('./data/api-mock-response.json',"utf-8");
+    }
+
     return JSON.parse(data);
 }
 
 app.get('/data',function *(req,res){
     const data = yield getData();
-    yield delay(1000);
+    yield delay(50);
     res.json(data);
 });
 
-app.get('/', function *(req,res){
+/**
+ * Wildcard route serves main application to any URL,
+ * while actual routing is handled by React Router.
+ */
+app.get('*', function *(req,res){
 
+    /**
+     * Todo... sort out loose ends
+     */
     const index = yield fs.readFile('./public/index.html',"utf-8");
     const data = yield getData();
     let indexRender = index.replace(`<%= data %>`,data);
+    const store = getStore();
+    const history = createHistory({
+        initialEntries: [req.path],
+    });
     if (useServerRender) {
-        const appRendered = renderToString(<App {...data}/>);
+        const appRendered = renderToString(
+            <Provider store={store}>
+                <ConnectedRouter history={history}>
+                    <App {...data}/>
+                </ConnectedRouter>
+            </Provider>
+        );
         indexRender = indexRender.replace(`<%= preloadedApplication %>`,appRendered)
     } else {
         indexRender = indexRender.replace(`<%= preloadedApplication %>`,`Please wait while we load the application.`);
