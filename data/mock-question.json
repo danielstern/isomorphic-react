@@ -1,34 +1,30 @@
 {
-  "items": [
-    {
-      "tags": [
-        "python",
-        "django",
-        "variables",
-        "methods"
-      ],
-      "owner": {
-        "reputation": 1,
-        "user_id": 5297131,
-        "user_type": "registered",
-        "profile_image": "https://www.gravatar.com/avatar/9caf8ccc35563c43d64b9e7165d1d426?s=128&d=identicon&r=PG&f=1",
-        "display_name": "sking",
-        "link": "https://stackoverflow.com/users/5297131/sking"
-      },
-      "is_answered": true,
-      "view_count": 22,
-      "answer_count": 1,
-      "score": 0,
-      "last_activity_date": 1507454003,
-      "creation_date": 1507453145,
-      "last_edit_date": 1507453534,
-      "question_id": 46629306,
-      "link": "https://stackoverflow.com/questions/46629306/python-calling-methods-with-variables",
-      "title": "Python calling methods with variables",
-      "body": "<p>I dont know if title is very accurate. I have 5 methods that are webscrapping different websites. Each function looks something like this:</p>\n\n<pre><code>def getWebsiteData1(last_article):\n    ty = datetime.today()\n    ty_str = ty.strftime('%d.%m.%Y')\n    url = 'http://www.website.com/news'\n    r = requests.get(url)\n    html = r.text\n    soup = BeautifulSoup(html, 'html.parser')\n    articles = soup.findAll(\"div\", {\"class\": \"text\"})[:15]\n    data = list()\n    for article in articles:\n        article_data = dict()\n        if article.find(\"a\").get('href') == last_article:\n            return data\n        else:\n            article_data[\"link\"] = article.find(\"a\").get('href')\n            article_data[\"title\"] = article.find(\"a\").get_text()\n            data.append(article_data)\n    return data\n</code></pre>\n\n<p>So each function returns data that is a list of dictionaries. I have another method that calls this method.</p>\n\n<pre><code>def CreateArticle(website_number, slug):\n    website = Website.objects.get(slug=slug)\n    last_article = website.last_article\n    data = getWebsiteData1(last_article) # here i want to do something like\n    data = website_number(last_article) # but ofcourse this doesnt work \n    if len(data) == 0:\n        return \"No news\"\nelse:\n    for i in data:\n        article = Article(service=service)\n        article.title = i['title']\n        article.url = i['link']\n        article.code = i['link']\n        article.save()\n    service.last_article = data[0]['link']\n    service.save(update_fields=['last_article'])\n    return data[0]['link']\n</code></pre>\n\n<p>I want to be able to call CreateArticle(website_number) and tell this method which getWebsiteData method it should call, so i can have only one CreateArticle method and not for each webscrapper method another CreateArticle method.\nI hope my question is clear :D</p>\n"
-    }
-  ],
-  "has_more": false,
-  "quota_max": 300,
-  "quota_remaining": 34
+  "items":[
+  {
+    "tags": [
+      "python",
+      "django",
+      "variables",
+      "methods"
+    ],
+    "owner": {
+      "reputation": 1,
+      "user_id": 5297131,
+      "user_type": "registered",
+      "profile_image": "https://www.gravatar.com/avatar/9caf8ccc35563c43d64b9e7165d1d426?s=128&d=identicon&r=PG&f=1",
+      "display_name": "sking",
+      "link": "https://stackoverflow.com/users/5297131/sking"
+    },
+    "is_answered": true,
+    "view_count": 22,
+    "answer_count": 1,
+    "score": 0,
+    "last_activity_date": 1507454003,
+    "creation_date": 1507453145,
+    "last_edit_date": 1507453534,
+    "question_id": 46629306,
+    "link": "https://stackoverflow.com/questions/46629306/python-calling-methods-with-variables",
+    "title": "Python calling methods with variables",
+    "body": "<p>I dont know if title is very accurate. I have 5 methods that are webscrapping different websites. Each function looks something like this:</p>\n\n<pre><code>def getWebsiteData1(last_article):\n    ty = datetime.today()\n    ty_str = ty.strftime('%d.%m.%Y')\n    url = 'http://www.website.com/news'\n    r = requests.get(url)\n    html = r.text\n    soup = BeautifulSoup(html, 'html.parser')\n    articles = soup.findAll(\"div\", {\"class\": \"text\"})[:15]\n    data = list()\n    for article in articles:\n        article_data = dict()\n        if article.find(\"a\").get('href') == last_article:\n            return data\n        else:\n            article_data[\"link\"] = article.find(\"a\").get('href')\n            article_data[\"title\"] = article.find(\"a\").get_text()\n            data.append(article_data)\n    return data\n</code></pre>\n\n<p>So each function returns data that is a list of dictionaries. I have another method that calls this method.</p>\n\n<pre><code>def CreateArticle(website_number, slug):\n    website = Website.objects.get(slug=slug)\n    last_article = website.last_article\n    data = getWebsiteData1(last_article) # here i want to do something like\n    data = website_number(last_article) # but ofcourse this doesnt work \n    if len(data) == 0:\n        return \"No news\"\nelse:\n    for i in data:\n        article = Article(service=service)\n        article.title = i['title']\n        article.url = i['link']\n        article.code = i['link']\n        article.save()\n    service.last_article = data[0]['link']\n    service.save(update_fields=['last_article'])\n    return data[0]['link']\n</code></pre>\n\n<p>I want to be able to call CreateArticle(website_number) and tell this method which getWebsiteData method it should call, so i can have only one CreateArticle method and not for each webscrapper method another CreateArticle method.\nI hope my question is clear :D</p>\n"
+  }]
 }

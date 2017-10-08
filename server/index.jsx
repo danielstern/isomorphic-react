@@ -8,7 +8,7 @@ import { delay } from 'redux-saga';
 import { renderToString } from 'react-dom/server'
 import React from 'react'
 import { argv } from 'optimist';
-import { questions } from '../data/api-real-url';
+import { questions, question } from '../data/api-real-url';
 import { get } from 'request-promise';
 import { ConnectedRouter } from 'react-router-redux';
 import getStore from '../src/getStore'
@@ -37,20 +37,36 @@ if(process.env.NODE_ENV === 'development') {
     app.use(require('webpack-hot-middleware')(compiler));
 }
 
-function * getData (){
+function * getQuestions (){
     let data;
     if (useLiveData) {
         data = yield get(questions,{gzip:true});
-        console.log("data?",data);
     } else {
-        data = yield fs.readFile('./data/api-mock-response.json',"utf-8");
+        data = yield fs.readFile('./data/mock-questions.json',"utf-8");
     }
 
     return JSON.parse(data);
 }
 
-app.get('/data',function *(req,res){
-    const data = yield getData();
+function * getQuestion (question_id) {
+    let data;
+    if (useLiveData) {
+        data = yield get(question(question_id),{gzip:true});
+    } else {
+        data = yield fs.readFile('./data/mock-question.json',"utf-8");
+    }
+
+    return JSON.parse(data);
+}
+
+app.get('/api/questions',function *(req,res){
+    const data = yield getQuestions();
+    yield delay(50);
+    res.json(data);
+});
+
+app.get('/api/questions/:id',function *(req,res){
+    const data = yield getQuestion(req.params.id);
     yield delay(50);
     res.json(data);
 });
@@ -60,15 +76,28 @@ app.get('/data',function *(req,res){
  * while actual routing is handled by React Router.
  */
 
-app.get(['/','/question/:id'], function *(req,res){
-    const index = yield fs.readFile('./public/index.html',"utf-8");
-    const data = yield getData();
-    let indexRender = index.replace(`<%= data %>`,data);
+app.get(['/','/questions/:id'], function *(req,res){
+    let index = yield fs.readFile('./public/index.html',"utf-8");
 
     const history = createHistory({
         initialEntries: [req.path],
     });
-    const store = getStore(history,{items:data.items});
+
+    const initialState = {
+        questions:[]
+    };
+
+    if (req.params.id) {
+        const question_id = req.params.id;
+        const res = yield getQuestion(question_id);
+        const questionDetails = res.items[0];
+        initialState.questions = [{...questionDetails,question_id}];
+    } else {
+        const questions = yield getQuestions();
+        initialState.questions = [...questions.items]
+    }
+
+    const store = getStore(history,initialState);
 
     /**
      * Todo... there is quite a bit of repetition between this block and a block in src/index.jsx
@@ -77,15 +106,15 @@ app.get(['/','/question/:id'], function *(req,res){
         const appRendered = renderToString(
             <Provider store={store}>
                 <ConnectedRouter history={history}>
-                    <App {...data}/>
+                    <App />
                 </ConnectedRouter>
             </Provider>
         );
-        indexRender = indexRender.replace(`<%= preloadedApplication %>`,appRendered)
+        index = index.replace(`<%= preloadedApplication %>`,appRendered)
     } else {
-        indexRender = indexRender.replace(`<%= preloadedApplication %>`,`Please wait while we load the application.`);
+        index = index.replace(`<%= preloadedApplication %>`,`Please wait while we load the application.`);
     }
-    res.send(indexRender);
+    res.send(index);
 });
 
 

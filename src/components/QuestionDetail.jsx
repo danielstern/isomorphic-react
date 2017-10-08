@@ -1,26 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+const QuestionDetailDisplay = ({title})=>(
+    <div>
+            <h3>
+                Question Detail
+            </h3>
+            {title ?
+                <div>
+                <h4>
+                    {title}
+                </h4>
+            </div>: <div>
+            <h4>
+                Loading question...
+            </h4>
+        </div>}
 
-/**
- * Todo... wrap component in container,
- * Have container dispatch an action
- * Have saga read action, get question from URL, update state
- * and have container update the application's display automatically
- */
 
-const QuestionDetailDisplay = ()=>(<div>
-    <h3>
-        Question Detail....
-    </h3>
-</div>);
+    </div>
+);
 
 const mapStateToProps = (state,ownProps)=>{
-    console.log("Rendering question...",state,ownProps);
+    const detail = state.questions.find(({question_id})=>question_id.toString() === ownProps.question_id.toString());
     return {
-
+        ...detail
     }
 };
+
 const mapDispatchToProps = (dispatch)=>({});
 
 export default connect(mapStateToProps,mapDispatchToProps)(QuestionDetailDisplay);

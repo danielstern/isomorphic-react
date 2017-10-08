@@ -12,37 +12,29 @@ import createHistory from 'history/createBrowserHistory';
 const history = createHistory();
 const store = getStore(history);
 
-// console.log("Router?",Route);
-
-/**
- * TODO ... is caching as a module variable the best solution
- */
-
-/**
- * Todo... reconcile server state pre-fetching and live data fetching...
- */
-let _data;
-
-fetch('/data')
-    .then(data=>data.json())
-    .then(data=>{
-        _data = data;
-        render(App,_data);
-    });
-
 if (module.hot) {
     module.hot.accept('./App', () => {
         const NextApp = require('./App').default;
-        render(NextApp, _data);
+        render(NextApp);
     })
 }
 
-const render = (_App,data)=>{
+const render = (_App)=>{
     ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter  history={history}>
-                 <_App {...data}/>
+                 <_App />
              </ConnectedRouter>
          </Provider>
         ,document.getElementById("AppContainer"));
 };
+
+// render(App);
+let initialRender = false;
+store.subscribe(()=>{
+    const state = store.getState();
+    if (! initialRender && state.questions.length > 0) {
+        initialRender = false;
+        render(App);
+    }
+});

@@ -1,6 +1,7 @@
 import React from 'react';
 import QuestionList from './components/QuestionList'
 import QuestionDetail from './components/QuestionDetail'
+import { connect } from 'react-redux';
 
 import {
     HashRouter,
@@ -9,27 +10,36 @@ import {
     Link
 } from 'react-router-dom'
 
-export default ({items = []})=>(
+const AppDisplay =  ({loadQuestion = ()=>{}})=>(
     <div>
         <h1>React Application</h1>
         <div>
-        <Link to={`/`}>
-            Home
-        </Link>
+            <Link to={`/`}>
+                Home
+            </Link>
         </div>
-        <div>
+        <Route exact path='/' render={()=><QuestionList />}/>
+        <Route exact path='/questions/:id' render={({match})=>{
+            /**
+             * todo... load question details
+             */
+            {/*setTimeout(loadQuestion(match.params.id),10);*/}
 
-
-        <Link to={`/question/1234`}>
-            Question
-        </Link>
-        </div>
-
-        <p>
-            <code>{items.length}</code> New questions!!!
-        </p>
-
-        <Route exact path='/' render={()=><QuestionList questions={items}/>}/>
-        <Route exact path='/question/:id' render={({match})=><QuestionDetail {...match}/>}/>
+            return <QuestionDetail question_id={match.params.id}/>
+        }}/>
     </div>
-)
+);
+
+const mapStateToProps = (state,ownProps)=>({
+    ...state,
+});
+
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        loadQuestion(question_id){
+            dispatch({type:`REQUEST_LOAD_QUESTION`,question_id});
+        }
+    }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(AppDisplay);

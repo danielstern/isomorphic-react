@@ -4,6 +4,7 @@ import path from 'path';
 export default {
     entry: [
         'webpack-hot-middleware/client',
+        'babel-regenerator-runtime',
         path.resolve(__dirname, 'src/')
     ],
     output: {
