@@ -61,10 +61,14 @@ function * getQuestion (question_id) {
     if (useLiveData) {
         data = yield get(question(question_id),{gzip:true,json:true});
     } else {
-        data = yield fs.readFile('./data/mock-question.json',"utf-8");
-        console.log("Data?",data);
-        data = JSON.parse(data);
-        data.items[0].question_id = question_id;
+        const questions = yield getQuestions();
+        const question = questions.items.find(_question=>_question.question_id == question_id);
+        question.body = `Mock question body: ${question_id}`;
+        data = {items:[question]};
+        // data = yield fs.readFile('./data/mock-question.json',"utf-8");
+        // console.log("Data?",data);
+        // data = JSON.parse(data);
+        // data.items[0].question_id = question_id;
     }
     return data;
 

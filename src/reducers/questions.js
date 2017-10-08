@@ -1,26 +1,16 @@
-/**
- * todo... rewrite using lodash
- */
+
+import unionWith from 'lodash/unionWith';
 export const questions = (state = [],{type,question,questions})=>{
+    const questionEquality = (a = {},b = {})=>{
+        return a.question_id == b.question_id
+    };
+
     if (type === `FETCHED_QUESTION`) {
-        if (!state.find(q=>q.question_id.toString() === question.question_id.toString())) {
-            state = [...state,question];
-        } else {
-            state = state.map(cachedQuestion=>{
-                if (cachedQuestion.question_id.toString() === question.question_id.toString()) {
-                    return {...question};
-                } else {
-                    return cachedQuestion;
-                }
-            })
-        }
+        state = unionWith([question],state,questionEquality);
     }
+
     if (type === `FETCHED_QUESTIONS`) {
-        questions.forEach(question=>{
-            if (!state.find(q=>q.question_id.toString() === question.question_id.toString())) {
-                state = [...state,question];
-            }
-        })
+        state = unionWith(state,questions,questionEquality);
     }
     return state;
-}
+};
