@@ -49,14 +49,6 @@ function * getQuestions (){
 }
 
 function * getQuestion (question_id) {
-    // if (useLiveData) {
-    //     data = yield get(questions,{gzip:true,json:true});
-    // } else {
-    //     data = yield fs.readFile('./data/mock-questions.json',"utf-8");
-    //     data = JSON.parse(data);
-    // }
-    // let question = data.items[0]
-    //
     let data;
     if (useLiveData) {
         data = yield get(question(question_id),{gzip:true,json:true});
@@ -65,25 +57,19 @@ function * getQuestion (question_id) {
         const question = questions.items.find(_question=>_question.question_id == question_id);
         question.body = `Mock question body: ${question_id}`;
         data = {items:[question]};
-        // data = yield fs.readFile('./data/mock-question.json',"utf-8");
-        // console.log("Data?",data);
-        // data = JSON.parse(data);
-        // data.items[0].question_id = question_id;
     }
     return data;
-
-    // return data;
 }
 
 app.get('/api/questions',function *(req,res){
     const data = yield getQuestions();
-    yield delay(50);
+    yield delay(300);
     res.json(data);
 });
 
 app.get('/api/questions/:id',function *(req,res){
     const data = yield getQuestion(req.params.id);
-    yield delay(50);
+    yield delay(300);
     res.json(data);
 });
 
@@ -91,7 +77,6 @@ app.get('/api/questions/:id',function *(req,res){
  * Wildcard route serves main application to any URL,
  * while actual routing is handled by React Router.
  */
-
 app.get(['/','/questions/:id'], function *(req,res){
     let index = yield fs.readFile('./public/index.html',"utf-8");
 
@@ -115,9 +100,6 @@ app.get(['/','/questions/:id'], function *(req,res){
 
     const store = getStore(history,initialState);
 
-    /**
-     * Todo... there is quite a bit of repetition between this block and a block in src/index.jsx
-     */
     if (useServerRender) {
         const appRendered = renderToString(
             <Provider store={store}>

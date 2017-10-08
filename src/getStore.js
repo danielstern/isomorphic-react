@@ -15,19 +15,8 @@ export default function(history,defaultState = {}){
         router
     }),defaultState,applyMiddleware(middleware, sagaMiddleware,logger));
 
-    if (process.env.NODE_ENV === 'development' && module.hot) {
-        /**
-         * Todo... implement hot reducer reload
-         * This should work out of the box if reducers index files maps all the reducers to an object
-         */
-        /*
-         module.hot.accept('./reducers', () => {
-             store.replaceReducer(require('./reducers'));
-        });
-        */
-    }
-
     sagaMiddleware.run(fetchQuestionSaga);
     sagaMiddleware.run(fetchQuestionsSaga);
+
     return store;
 }

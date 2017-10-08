@@ -2,39 +2,36 @@ import React from 'react';
 import Markdown from 'react-markdown';
 import { connect } from 'react-redux';
 
-const QuestionDetailDisplay = ({title,body})=>(
+const QuestionDetailDisplay = ({title,body,answer_count,tags})=>(
     <div>
-            <h3>
-                Question Detail
-            </h3>
-
+        <h3>
+            {title}
+        </h3>
+        {body ?
+            <div>
+                <Markdown source={body}/>
                 <div>
+                    {answer_count} Answers
+                </div>
+                <div>
+                    {tags.map(tag=>(
+                        <div key={tag}>
+                            {tag}
+                        </div>
+                    ))}
+                </div>
+            </div> :
+            <div>
                 <h4>
-                    {title}
+                    Loading question..
                 </h4>
             </div>
-        {body ? <div>
-                <Markdown source={body}/>
-            </div>: <div>
-            <h4>
-                Loading question..
-            </h4>
-        </div>}
-
-
+        }
     </div>
 );
 
-const mapStateToProps = (state,ownProps)=>{
-    // debugger;
+const mapStateToProps = (state,ownProps)=>({
+    ...state.questions.find(({question_id})=>question_id == ownProps.question_id)
+});
 
-    const detail = state.questions.find(({question_id})=>question_id.toString() === ownProps.question_id.toString());
-    console.log("Rendering question detail...",detail);
-    return {
-        ...detail
-    }
-};
-
-const mapDispatchToProps = (dispatch)=>({});
-
-export default connect(mapStateToProps,mapDispatchToProps)(QuestionDetailDisplay);
+export default connect(mapStateToProps)(QuestionDetailDisplay);

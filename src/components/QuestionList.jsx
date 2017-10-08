@@ -17,18 +17,18 @@ import {
         </Link>
     </div>);
 
-const QuestionList = ({questions})=>{
-    console.log("Render question list",questions);
-    return <div>
-        { questions ? <div>
-                <h1>Questions</h1>
+const QuestionList = ({questions})=>(
+    <div>
+        { questions ?
+            <div>
                 {questions.map(question=><QuestionListItem key={question.question_id} {...question}/>)}
-            </div> : <div>
+            </div> :
+            <div>
                 Loading questions...
-            </div>}
-
+            </div>
+        }
     </div>
-};
+);
 
 const mapStateToProps = (state)=>{
     return {

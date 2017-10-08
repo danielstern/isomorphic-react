@@ -13,14 +13,16 @@ const history = createHistory();
 const store = getStore(history);
 
 if (module.hot) {
+//     module.hot.accept(()=>{
+//         location.reload();
+//     });
     module.hot.accept('./App', () => {
         const NextApp = require('./App').default;
         render(NextApp);
-    })
+    });
 }
 
 const render = (_App)=>{
-    console.log("Rendering app...",store.getState());
     ReactDOM.render(
         <Provider store={store}>
             <ConnectedRouter  history={history}>
@@ -29,14 +31,12 @@ const render = (_App)=>{
          </Provider>
         ,document.getElementById("AppContainer"));
 };
+console.log("Test??");
 
-// render(App);
 let initialRender = false;
 store.subscribe(()=>{
-
     const state = store.getState();
     if (! initialRender && state.questions.length > 0) {
-        console.log("Rendering");
         initialRender = false;
         render(App);
     }

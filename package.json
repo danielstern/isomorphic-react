@@ -1,5 +1,5 @@
 {
-  "name": "react-hot-reload-webpack-example",
+  "name": "react-isomorphic-example",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,7 +8,7 @@
     "start-dev": "cross-env NODE_ENV=development babel-node server --useServerRender=true --useLiveData=false"
   },
   "keywords": [],
-  "author": "",
+  "author": "Daniel Stern (Code Whisperer)",
   "license": "ISC",
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
