@@ -79,9 +79,9 @@ if(process.env.NODE_ENV === 'development') {
     app.use(require('webpack-hot-middleware')(compiler));
 } else {
     /**
-     * If the process is production, just serve the file from the dist page
+     * If the process is production, just serve the file from the dist folder
+     * Build should have been run beforehand
      */
-    console.log("Serving prod settings...");
     app.use(express.static(path.resolve(__dirname, '../dist')));
 }
 

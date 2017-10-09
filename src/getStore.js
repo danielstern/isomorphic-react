@@ -30,7 +30,13 @@ export default function(history,defaultState = {}){
      * Create a logger to provide insights to the application's state from the developer window
      * You are encouraged to remove this for production.
      */
-    const logger = createLogger();
+
+
+    const middlewareChain = [middleware, sagaMiddleware];
+    if(process.env.NODE_ENV === 'development') {
+        const logger = createLogger();
+        middlewareChain.push(logger);
+    }
 
     /**
      * Create a store with the above middlewares, as well as an object containing reducers
@@ -38,7 +44,7 @@ export default function(history,defaultState = {}){
     const store = createStore(combineReducers({
         ...reducers,
         router
-    }), defaultState,applyMiddleware(middleware, sagaMiddleware, logger));
+    }), defaultState,applyMiddleware(...middlewareChain));
 
     /**
      * Run the sagas which will in turn wait for the appropriate action type before making requests
