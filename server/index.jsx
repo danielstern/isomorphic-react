@@ -39,9 +39,7 @@ const useLiveData = argv.useLiveData === 'true';
 
 /**
  * The block below will run during development and facilitates live-reloading
- */
-/**
- * Todo... is the surrounding if block strictly required here?
+ * If the process is development, set up the full live reload server
  */
 if(process.env.NODE_ENV === 'development') {
     /**
@@ -79,6 +77,12 @@ if(process.env.NODE_ENV === 'development') {
      * Can be used instead of react-hot-middleware if Redux is being used to manage app state
      */
     app.use(require('webpack-hot-middleware')(compiler));
+} else {
+    /**
+     * If the process is production, just serve the file from the dist page
+     */
+    console.log("Serving prod settings...");
+    app.use(express.static(path.resolve(__dirname, '../dist')));
 }
 
 /**
