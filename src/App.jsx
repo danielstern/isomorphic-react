@@ -16,11 +16,9 @@ import {
  */
 const AppDisplay =  ({loadQuestion = ()=>{}})=>(
     <div>
-        <h1>Isomorphic React</h1>
         <div>
-            {/* Link redirects to base URL using react-router*/}
             <Link to={`/`}>
-                Home
+                <h1>Isomorphic React</h1>
             </Link>
         </div>
 

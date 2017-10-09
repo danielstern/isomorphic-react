@@ -1,4 +1,5 @@
 import React from 'react';
+import TagsList from './TagsList'
 import { connect } from 'react-redux';
 import {
     Link
@@ -9,14 +10,13 @@ import {
  * about a question in a format that works well in a list
  */
 const QuestionListItem = ({tags,answer_count,title,views,question_id})=>(
-    <div>
+    <div className="mb-3">
         <h3>
             {title}
         </h3>
-        <code>
-            {tags.join(',')}
-        </code>
-        {/* A link to a dynamically rendered question detail page, whic his handled by React Router*/}
+        <div className="mb-2">
+            <TagsList tags={tags}/>
+        </div>
         <div>
             <Link to={`/questions/${question_id}`}>
                 <button>More Info</button>

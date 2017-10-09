@@ -273,7 +273,7 @@
       "creation_date": 1507130569,
       "question_id": 46568531,
       "link": "https://stackoverflow.com/questions/46568531/why-is-my-label-ignoring-new-lines-n-coming-from-the-app-config-file",
-      "title": "Why is my Label ignoring new lines (&quot;\\n&quot;) coming from the App.config file?"
+      "title": "Why is my Label ignoring new lines ('') coming from the App.config file?"
     },
     {
       "tags": [
@@ -323,7 +323,7 @@
       "last_edit_date": 1507130820,
       "question_id": 46567926,
       "link": "https://stackoverflow.com/questions/46567926/is-there-a-way-to-just-print-the-y-when-your-answer-is-x-y",
-      "title": "Is there a way to just print the &#39;y&#39; when your answer is (x, y)?"
+      "title": "Is there a way to just print the () when your answer is (x, y)?"
     },
     {
       "tags": [
@@ -570,7 +570,7 @@
       "creation_date": 1507130803,
       "question_id": 46568606,
       "link": "https://stackoverflow.com/questions/46568606/namespace-firebase-has-no-exported-member-promise",
-      "title": "Namespace &#39;firebase&#39; has no exported member &#39;Promise&#39;"
+      "title": "Namespace'firebase' has no exported member 'Promise';"
     },
     {
       "tags": [
