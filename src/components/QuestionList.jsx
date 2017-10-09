@@ -4,7 +4,11 @@ import {
     Link
 } from 'react-router-dom'
 
- const QuestionListItem = ({tags,answer_count,title,views,question_id})=>(
+/**
+ * Each entry in the QuestionList is represtented by a QuestionListItem, which displays high-level information
+ * about a question in a format that works well in a list
+ */
+const QuestionListItem = ({tags,answer_count,title,views,question_id})=>(
     <div>
         <h3>
             {title}
@@ -12,11 +16,17 @@ import {
         <code>
             {tags.join(',')}
         </code>
-        <Link to={`/questions/${question_id}`}>
-            <button>Go</button>
-        </Link>
+        {/* A link to a dynamically rendered question detail page, whic his handled by React Router*/}
+        <div>
+            <Link to={`/questions/${question_id}`}>
+                <button>More Info</button>
+            </Link>
+        </div>
     </div>);
 
+/**
+ * Display all questions in an array provided to it as a simple list
+ */
 const QuestionList = ({questions})=>(
     <div>
         { questions ?
@@ -30,10 +40,15 @@ const QuestionList = ({questions})=>(
     </div>
 );
 
-const mapStateToProps = (state)=>{
-    return {
-        questions:state.questions
-    }
-};
+/**
+ * Get the list of questions from the application's state
+ * It is populated by a ../sagas/fetch-question(s)-saga.
+ */
+const mapStateToProps = ({questions})=>({
+    questions
+});
 
+/**
+ * Create and export a connected component
+ */
 export default connect(mapStateToProps)(QuestionList);
