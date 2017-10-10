@@ -6,7 +6,7 @@
   "scripts": {
     "build": "cross-env webpack --config ./webpack.config.babel.prod.js",
     "postinstall": "npm install -g babel-cli@6.26.0 cross-env@5.0.5 webpack@3.6.0",
-    "start": "npm run start-prod",
+    "start": "npm run postinstall && npm run start-prod",
     "start-dev": "cross-env NODE_ENV=development babel-node server --useServerRender=true --useLiveData=false",
     "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useServerRender=true --useLiveData=false"
   },
