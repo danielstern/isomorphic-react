@@ -13,7 +13,7 @@ Great question!
 ### Getting Started
 1) Clone the repository
 2) install dependencies
-`npm install -g babel-cli && npm install -g cross-env && npm install`
+`npm install && npm run postinstall`
 3) Run the dev server
 `npm run start-dev`
 4) Navigate to the application's url
