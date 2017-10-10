@@ -32,9 +32,7 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.6",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
-  },
-  "devDependencies": {
+    "request-promise": "^4.2.2",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
