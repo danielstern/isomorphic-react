@@ -10,7 +10,7 @@ export default function * () {
          * that new questions have been loaded.
          */
         yield take(`REQUEST_FETCH_QUESTIONS`);
-        const raw = yield fetch('http://localhost:3000/api/questions');
+        const raw = yield fetch('/api/questions');
         const json = yield raw.json();
         const questions = json.items;
         yield put({type:`FETCHED_QUESTIONS`,questions});

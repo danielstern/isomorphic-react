@@ -12,7 +12,7 @@ export default function * () {
  * Fetch question details from the local proxy API
  */
 function * handleFetchQuestion ({question_id}) {
-    const raw = yield fetch(`http://localhost:3000/api/questions/${question_id}`);
+    const raw = yield fetch(`/api/questions/${question_id}`);
     const json = yield raw.json();
     const question = json.items[0];
     /**
