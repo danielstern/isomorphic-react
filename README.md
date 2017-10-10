@@ -13,7 +13,7 @@ Great question!
 ### Getting Started
 1) Clone the repository
 2) install dependencies
-`npm install -g babel-cli && npm install`
+`npm install -g babel-cli && npm install -g cross-env && npm install`
 3) Run the dev server
 `npm run start-dev`
 4) Navigate to the application's url
@@ -21,7 +21,7 @@ Great question!
 
 ### Usage
 #### Enabling / Disabling Server Rendering
-Server rendering is great, but sometimes we want to disable it when there's an error in our render and we'd rather troubleshoot it in the server.
+Server rendering is great, but sometimes we want to disable it when there's an error in our render and we'd rather troubleshoot it in the client.
 This setting is passed in as a CLI argument via the `--useServerRender=true` argument.
 You can modify this in `package.json` to `--useServerRender=false` which will disable any server-side rendering functionality.
 
