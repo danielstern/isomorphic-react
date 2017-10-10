@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env webpack --config ./webpack.config.babel.prod.js",
+    "start": "npm install -g babel-cli && npm run start-prod",
     "start-dev": "cross-env NODE_ENV=development babel-node server --useServerRender=true --useLiveData=false",
     "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useServerRender=true --useLiveData=false"
   },
