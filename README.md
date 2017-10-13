@@ -1,5 +1,6 @@
 # Isomorphic React
 ## A Starter Isomorphic React Application with All Best Practices and No Frills
+![image](https://user-images.githubusercontent.com/4268152/31387801-c091f5c8-ad99-11e7-9cb6-42fcde98fc88.png)
 ### About The Application
 This application is a basic API client which gathers data from an outside API (in this case, Stackoverflow) and generates an isomorphic, single-page application (SPA).
 
