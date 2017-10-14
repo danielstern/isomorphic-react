@@ -45,7 +45,7 @@ if(process.env.NODE_ENV === 'development') {
     /**
      * Get the development configuration from webpack.config.
      */
-    const config = require('../webpack.config.babel.dev').default;
+    const config = require('../webpack.config.dev.babel.js').default;
 
     /**
      * Create a webpack compiler which will output our bundle.js based on the application's code
