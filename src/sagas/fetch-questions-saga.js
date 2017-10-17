@@ -1,4 +1,5 @@
 import { put, take } from 'redux-saga/effects'
+import fetch from 'isomorphic-fetch';
 /**
  * Fetch questions saga gets a list of all new
  * questions in response to a particular view being loaded

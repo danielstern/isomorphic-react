@@ -4,8 +4,6 @@ import QuestionDetail from './components/QuestionDetail'
 import { connect } from 'react-redux';
 
 import {
-    HashRouter,
-    Switch,
     Route,
     Link
 } from 'react-router-dom'
