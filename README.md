@@ -48,3 +48,6 @@ This error appears when babel is not configured correctly. This can actually be 
 #### Any Error That is Taking a Long Time to Troubleshoot
 Things can always go wrong in the world of programming. If this happens, clone the master branch of this repo to a new directory and run the installation instructions. If desired, you can work backwards, pruning extra files until you get the application in the state you want.
 
+#### Problems with the Repo
+I want this repo to work perfectly for as many users as possible. Got a problem? <a href=https://github.com/danielstern/isomorphic-react/issues/new>Open an issue!</a> Let's figure out a solution together.
+
