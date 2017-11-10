@@ -39,3 +39,12 @@ This application fully supports a production build setting, which disables live 
 To run production, run the command `npm run start-prod`, which automatically triggers the `build` script.
 This mode is recommended for production. However, this boilerplate has never been used in actual production so utilize caution if deploying as a real application.
 
+### Troubleshooting
+#### `unexpected token import`
+This error appears when babel is not configured correctly. This can actually be caused by outdated global dependencies, and is hard to fix. For best results, try the following -
+- Install `babel-register` as a local saved dependency
+- Update global versions of `babel`, `webpack` and all dependencies to latest / course versions
+
+#### Any Error That is Taking a Long Time to Troubleshoot
+Things can always go wrong in the world of programming. If this happens, clone the master branch of this repo to a new directory and run the installation instructions. If desired, you can work backwards, pruning extra files until you get the application in the state you want.
+
