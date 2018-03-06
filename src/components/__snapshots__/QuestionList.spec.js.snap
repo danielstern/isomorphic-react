@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The question list The items of the question list should display a list of items 1`] = `
+<div
+  className="mb-3"
+>
+  <h3>
+    The meaning of life
+  </h3>
+  <div
+    className="mb-2"
+  >
+    <div>
+      <code>
+        css
+      </code>
+      <code>
+        javascript
+      </code>
+    </div>
+  </div>
+  <div>
+    <a
+      href="/questions/108"
+      onClick={[Function]}
+    >
+      <button>
+        More Info
+      </button>
+    </a>
+  </div>
+</div>
+`;
