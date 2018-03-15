@@ -30,7 +30,7 @@ describe("The stateful notifications viewer",async ()=>{
         const instance = tree.root;
         const component = instance.findByProps({className:`notifications`});
         const text = component.children[0];
-        expect(text).toEqual("5");
+        expect(text).toEqual("5 Notifications");
     });
 
     it("Should have a passing snapshot", async ()=>{

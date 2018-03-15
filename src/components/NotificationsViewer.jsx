@@ -23,12 +23,12 @@ export default class extends React.Component {
     }
     render() {
         return (
-            <div>
-                Notifications:
-                    <div className="notifications">
-                        {this.state.count != -1 ? this.state.count : `Loading...`}
-                    </div>
+        <section  className="mt-3 mb-2">
+            <div className="notifications">
+                {this.state.count != -1 ? `${this.state.count} Notifications` : `Loading...`}
             </div>
+        </section>
+
         )
     }
 }
