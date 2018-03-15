@@ -21,7 +21,7 @@ const AppDisplay =  ()=>(
             </Link>
         </div>
         <div>
-            {/*<NotificationsViewer />*/}
+            <NotificationsViewer />
         </div>
 
         {/*Specify a route for the main page which renders when the path is empty*/}
