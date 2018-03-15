@@ -65,8 +65,10 @@ store.subscribe(()=>{
 const fetchDataForLocation = location=>{
     /**
      * If the location is the standard route, fetch an undetailed list of all questions
-     */
-
+     **/
+    if (location.pathname === "/"){
+        store.dispatch({type:`REQUEST_FETCH_QUESTIONS`})
+    }
 
     /**
      * If the location is the details route, fetch details for one question
