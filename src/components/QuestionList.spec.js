@@ -1,25 +1,17 @@
+/**
+ * In this file we explore testing a React-Redux component by wrapping it in a MemoryRouter and checking the results
+ */
+
 import React from 'react';
 import { QuestionListItem } from './QuestionList'
 import renderer from 'react-test-renderer';
-const tree = renderer
-    .create(
-        <MemoryRouter>
-            <QuestionListItem
-                tags={["css","javascript"]}
-                title="The meaning of life"
-                answer_count={42}
-                question_id="108" />
-        </MemoryRouter>
-    );
-expect(tree.toJSON()).toMatchSnapshot();
-
 import { MemoryRouter } from 'react-router';
+
 
 /**
  *  Here we test a React-Redux component. The key takeaway is that it is easier to test the decoupled "display"
     component and consider the "connect" component as an implementation detail.
  */
-
 describe("The question list",()=>{
    describe("The items of the question list",()=>{
        it ("should display a list of items",()=>{
