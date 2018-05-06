@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
  * as its prop
  * If no question is found, that means the saga that is loading it has not completed, and display an interim message
  */
-const QuestionDetailDisplay = ({title,body,answer_count,tags})=>(
+export const QuestionDetailDisplay = ({title,body,answer_count,tags})=>(
     <div>
         <h3 className="mb-2">
             {title}
@@ -33,7 +33,7 @@ const QuestionDetailDisplay = ({title,body,answer_count,tags})=>(
     </div>
 );
 
-const mapStateToProps = (state,ownProps)=>({
+export const mapStateToProps = (state,ownProps)=>({
     /**
      * Find the question in the state that matches the ID provided and pass it to the display component
      */
