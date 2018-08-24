@@ -8,7 +8,8 @@
     "postinstall": "npm install -g babel-cli@6.26.0 cross-env@5.0.5 webpack@3.6.0",
     "start": "npm run start-prod",
     "start-dev": "cross-env NODE_ENV=development babel-node server --useServerRender=true --useLiveData=false",
-    "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useServerRender=true --useLiveData=false"
+    "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useServerRender=true --useLiveData=false",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Daniel Stern (Code Whisperer)",
@@ -30,6 +31,7 @@
     "fs-extra": "^4.0.2",
     "history": "^4.7.2",
     "isomorphic-fetch": "^2.2.1",
+    "jest": "^22.3.0",
     "lodash": "^4.17.4",
     "optimist": "^0.6.1",
     "react": "^16.0.0",
