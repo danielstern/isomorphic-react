@@ -7,7 +7,19 @@ describe(`This is a QuestionList test`, () => {
         console.log("Printing before all....");
     });
 
-    it('This is a list of items', function() {
+    afterEach(() => {
+        console.log("Printing after each....");
+    });
+
+    afterAll(() => {
+        console.log("Printing after all....");
+    });
+
+    it('This is a list of items -ve test', function() {
         expect(2+2).toEqual(4);
+    });
+
+    it('This is a list of items for +ve test', function() {
+        expect(2+2).not.toEqual(5);
     });
 });
