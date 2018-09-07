@@ -22,4 +22,13 @@ describe(`This is a QuestionList test`, () => {
     it('This is a list of items for +ve test', function() {
         expect(2+2).not.toEqual(5);
     });
+
+    it.skip('This test will be skipped', function() {
+        expect(2+2).not.toEqual(5);
+    });
+
+    /* Only this test will be run if enabled */
+    // it.only('This test will be skipped', function() {
+    //     expect(2+2).not.toEqual(5);
+    // });
 });
