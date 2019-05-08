@@ -1,7 +1,7 @@
 import NotificationsViewer from '../NotificationsViewer';
 import renderer from 'react-test-renderer';
 import React from 'react';
-import delay from 'redux-saga';
+import { delay } from 'redux-saga';
 
 jest.mock('../../services/NotificationsService');
 
