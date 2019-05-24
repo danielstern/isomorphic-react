@@ -11,6 +11,10 @@
     "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useServerRender=true --useLiveData=false",
     "test": "jest"
   },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost"
+  },
   "keywords": [],
   "author": "Daniel Stern (Code Whisperer)",
   "license": "MIT",
