@@ -49,5 +49,10 @@
     "webpack": "^3.6.0",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1"
-  }
+  },	
+    "jest": {
+		"verbose": true,
+		"testURL": "http://localhost/"
+	}
+
 }
