@@ -8,7 +8,9 @@
     "postinstall": "npm install -g babel-cli@7.0.0-beta.3 cross-env@5.0.5 webpack@3.6.0",
     "start": "npm run start-prod",
     "start-dev": "cross-env NODE_ENV=development babel-node server --useServerRender=true --useLiveData=false",
-    "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useServerRender=true --useLiveData=false"
+    "start-prod": "npm run build && cross-env NODE_ENV=production babel-node server --useServerRender=true --useLiveData=false",
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "keywords": [],
   "author": "Daniel Stern (Code Whisperer)",
@@ -42,6 +44,7 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.6",
     "react-router-server": "^4.2.2",
+    "react-test-renderer": "^16.8.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.6",
