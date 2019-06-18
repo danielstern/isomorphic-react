@@ -28,6 +28,8 @@
     "babel-regenerator-runtime": "^6.5.0",
     "copy-webpack-plugin": "^4.1.1",
     "cross-env": "^5.0.5",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "express": "^4.16.1",
     "express-yields": "^1.1.1",
     "fs-extra": "^4.0.2",
