@@ -22,8 +22,6 @@ describe('The notification viewer', () => {
     notificationService.__setCount(42);
   });
 
-  // it('pass', () => {});
-
   it('should display the correct number of notifications', async() => {
     const tree = renderer.create(<NotificationsViewer />);
     const wrapper = shallow(<NotificationsViewer />);
@@ -36,8 +34,7 @@ describe('The notification viewer', () => {
 
     const component = instance.findByProps({className: `notifications`});
     const text = component.children[0];
-    console.log('text is:', text);
 
-    expect(text).toEqual('42 Notifications Awaiting');
+    expect(text).toEqual('42 Notifications');
   });
 })
