@@ -7,11 +7,6 @@ import NotificationsViewer from './components/NotificationsViewer'
 import { connect } from 'react-redux';
 import { Route, Link } from 'react-router-dom';
 
-// Components
-import QuestionList from './components/QuestionList'
-import QuestionDetail from './components/QuestionDetail'
-import NotificationsViewer from './components/NotificationsViewer';
-
 /**
  * App Component is the highest level real component in the application, it is the parent of the routes and an
  * an ancestors of all other compoents

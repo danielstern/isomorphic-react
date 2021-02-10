@@ -14,7 +14,7 @@ jest.mock('../../services/NotificationsService');
  */
 const notificationsService = require('../../services/NotificationsService').default;
 
-describe("The stateful notifications viewer",async ()=>{
+describe("The stateful notifications viewer",()=>{
 
     beforeAll(()=>{
          notificationsService.__setCount(5);

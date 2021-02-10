@@ -1,5 +1,7 @@
 # Isomorphic React
+
 # Updated 2021 Version
+- As of February 2021, the Jest Branch is now merged into the main branch of this project
 
 ## A Starter Isomorphic React Application with All Best Practices and No Frills
 ![image](https://user-images.githubusercontent.com/4268152/31387801-c091f5c8-ad99-11e7-9cb6-42fcde98fc88.png)

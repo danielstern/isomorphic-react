@@ -9,9 +9,9 @@ export default {
     },
     async getNotifications(){
 
-        console.warn("Using mock notification service");
+        // console.warn("Using mock notification service");
         return { count };
-        
+
     }
 };
 
