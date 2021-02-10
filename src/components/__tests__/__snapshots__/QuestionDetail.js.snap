@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The question detail view The display component Should not regress 1`] = `
+<div>
+  <h3
+    className="mb-2"
+  >
+    The meaning of life
+  </h3>
+  <div>
+    <div
+      className="mb-3"
+    >
+      <div>
+        <code>
+          hitchhiking
+        </code>
+      </div>
+    </div>
+    <div>
+      <p>
+        42
+      </p>
+    </div>
+    <div>
+      0
+       Answers
+    </div>
+  </div>
+</div>
+`;

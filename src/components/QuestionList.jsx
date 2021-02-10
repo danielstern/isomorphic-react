@@ -9,7 +9,7 @@ import {
  * Each entry in the QuestionList is represtented by a QuestionListItem, which displays high-level information
  * about a question in a format that works well in a list
  */
-const QuestionListItem = ({tags,answer_count,title,views,question_id})=>(
+export const QuestionListItem = ({tags,answer_count,title,views,question_id})=>(
     <div className="mb-3">
         <h3>
             {title}
@@ -27,7 +27,7 @@ const QuestionListItem = ({tags,answer_count,title,views,question_id})=>(
 /**
  * Display all questions in an array provided to it as a simple list
  */
-const QuestionList = ({questions})=>(
+export const QuestionList = ({questions})=>(
     <div>
         { questions ?
             <div>

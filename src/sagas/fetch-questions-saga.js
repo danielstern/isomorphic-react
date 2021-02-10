@@ -11,6 +11,7 @@ export default function * () {
          * that new questions have been loaded.
          */
         yield take(`REQUEST_FETCH_QUESTIONS`);
+        console.log("Got fetch questions request");
         const raw = yield fetch('/api/questions');
         const json = yield raw.json();
         const questions = json.items;

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The stateful notifications viewer Should have a passing snapshot 1`] = `
+<section
+  className="mt-3 mb-2"
+>
+  <div
+    className="notifications"
+  >
+    Loading...
+  </div>
+</section>
+`;
+
+exports[`The stateful notifications viewer Should have a passing snapshot 2`] = `
+<section
+  className="mt-3 mb-2"
+>
+  <div
+    className="notifications"
+  >
+    5 Notifications
+  </div>
+</section>
+`;
