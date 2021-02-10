@@ -48,13 +48,12 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "react-router-server": "^4.2.2",
     "react-test-renderer": "^16.8.6",
-
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^0.15.6",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
-    "uglifyjs-webpack-plugin": "^2.2.0",
+    "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.21.2",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.19.1"
