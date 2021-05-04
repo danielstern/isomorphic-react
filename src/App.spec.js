@@ -1,4 +1,4 @@
-import delay from 'redux-saga';
+import { delay } from 'redux-saga';
 
 it("async test 1",done=>{
     setTimeout(done,100);
