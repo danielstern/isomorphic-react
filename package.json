@@ -37,7 +37,7 @@
     "history": "^4.7.2",
     "isomorphic-fetch": "^3.0.0",
     "jest": "^26.6.3",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "optimist": "^0.6.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
